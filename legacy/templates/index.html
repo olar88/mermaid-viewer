@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cute Mermaid Viewer</title>
+    <link rel="stylesheet" href="/styles/theme.css">
+    <!-- Load Mermaid from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>✨ Mermaid Preview ✨</h1>
+            <p class="status" id="status">Waiting for updates...</p>
+        </header>
+        
+        <div class="card">
+            <div class="mermaid" id="mermaid-container">
+                %% Diagram will be rendered here
+                graph TD;
+                A[Loading...] --> B[Please wait];
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'base', // We will override with custom CSS
+            securityLevel: 'loose',
+            themeVariables: {
+                fontFamily: 'Quicksand, sans-serif',
+                primaryColor: '#FFB7B2',
+                primaryTextColor: '#555',
+                primaryBorderColor: '#FF9E99',
+                lineColor: '#888',
+                secondaryColor: '#B5EAD7',
+                tertiaryColor: '#E2F0CB'
+            }
+        });
+
+        let lastMtime = 0;
+
+        async function checkUpdates() {
+            try {
+                const response = await fetch('/data');
+                const data = await response.json();
+
+                if (data.mtime > lastMtime) {
+                    lastMtime = data.mtime;
+                    renderDiagram(data.content);
+                    updateStatus('Updated just now!');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                updateStatus('Error connecting to server.');
+            }
+        }
+
+        async function renderDiagram(content) {
+            const container = document.getElementById('mermaid-container');
+            // Clear previous content
+            container.innerHTML = content;
+            container.removeAttribute('data-processed'); // Reset mermaid processing flag
+            
+            try {
+                await mermaid.run({
+                    nodes: [container]
+                });
+            } catch (err) {
+                console.error('Mermaid rendering error:', err);
+                container.innerHTML = `<div class="error">Syntax Error: ${err.message}</div>`;
+            }
+        }
+
+        function updateStatus(msg) {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = msg;
+            statusEl.classList.add('pulse');
+            setTimeout(() => statusEl.classList.remove('pulse'), 1000);
+        }
+
+        // Poll every 1 second
+        setInterval(checkUpdates, 1000);
+        
+        // Initial check
+        checkUpdates();
+    </script>
+</body>
+</html>

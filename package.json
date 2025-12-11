@@ -1,6 +1,7 @@
 {
-  "name": "temp_app",
-  "version": "0.1.0",
+  "name": "mermaid-viewer",
+  "version": "0.1.1",
+  "author": "Odette",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,13 +10,22 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.559.0",
+    "mermaid": "^11.12.2",
     "next": "16.0.8",
+    "prismjs": "^1.30.0",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-colorful": "^5.6.1",
+    "react-dom": "19.2.1",
+    "react-simple-code-editor": "^0.14.1",
+    "tailwind-merge": "^3.4.0",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/prismjs": "^1.26.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

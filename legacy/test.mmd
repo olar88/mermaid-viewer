@@ -1,0 +1,33 @@
+graph TD
+  subgraph 賣家商品管理
+      list(商品列表)
+      list --> addProductBtn[新增商品按鈕]
+      list --> editProductBtn[編輯商品按鈕]
+      addProductBtn --> checkLogin{是否登入}
+
+      editProductBtn --> checkLogin{是否登入}
+
+      checkLogin -->|是| 新增商品
+      checkLogin -->|否| 前往登入頁
+
+      checkLogin -->|是| checkData{是否可取得商品資料}
+      checkLogin -->|否| 前往登入頁
+
+      checkData --> |是| checkSameAuthor{是否為自身商品}
+      checkData --> |否| list
+
+      checkSameAuthor --> |是| 編輯商品
+      checkSameAuthor --> |否| list
+
+  end
+    
+    style list fill:#FFB7B2,stroke:#FF9E99,stroke-width:2px
+    style addProductBtn fill:#B5EAD7,stroke:#A0D8C5,stroke-width:2px
+    style editProductBtn fill:#E2F0CB,stroke:#D0E0B8,stroke-width:2px
+    style checkLogin fill:#FFDAC1,stroke:#FFC8A2,stroke-width:2px
+    style checkData fill:#E0BBE4,stroke:#D0A9D4,stroke-width:2px
+    style checkSameAuthor fill:#E0BBE4,stroke:#D0A9D4,stroke-width:2px
+    style 新增商品 fill:#E0BBE4,stroke:#D0A9D4,stroke-width:2px
+    style 前往登入頁 fill:#E0BBE4,stroke:#D0A9D4,stroke-width:2px
+    style 編輯商品 fill:#E0BBE4,stroke:#D0A9D4,stroke-width:2px
+    
