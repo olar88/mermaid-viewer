@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Preview Mermaid (Cute)",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "${workspaceFolder}/mermaid_viewer.py",
+                "${file}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

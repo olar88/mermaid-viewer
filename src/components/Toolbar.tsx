@@ -9,14 +9,16 @@ export default function Toolbar() {
     const { config, setConfig, events, updateEventStyle } = useStore();
 
     const handleDownload = () => {
-        const svg = document.querySelector('.mermaid svg');
+        const svg = document.querySelector('#mermaid-svg') as SVGSVGElement | null;
+        console.log(svg);
+        
         if (svg) {
             const svgData = new XMLSerializer().serializeToString(svg);
             const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'cute-diagram.svg';
+            link.download = 'mermaid-diagram.svg';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);

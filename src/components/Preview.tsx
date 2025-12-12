@@ -69,7 +69,7 @@ export default function Preview() {
             <div className="absolute bottom-4 right-4 flex items-center gap-1 bg-white/80 backdrop-blur-sm border border-white/50 shadow-soft rounded-[20px] p-1.5 z-10">
                 <button
                     onClick={() => setZoomLevel(zoomLevel - 0.1)}
-                    className="p-2 hover:bg-black/5 rounded-full transition-colors text-text/80 active:scale-95"
+                    className="flex justify-center items-center cursor-pointer p-2 aspect-square hover:bg-black/5 rounded-full transition-colors text-text/80 active:scale-95"
                     title="Zoom Out"
                 >
                     <Minus size={16} />
@@ -79,7 +79,7 @@ export default function Preview() {
                 </span>
                 <button
                     onClick={() => setZoomLevel(zoomLevel + 0.1)}
-                    className="p-2 hover:bg-black/5 rounded-full transition-colors text-text/80 active:scale-95"
+                    className="flex justify-center items-center cursor-pointer p-2 aspect-square hover:bg-black/5 rounded-full transition-colors text-text/80 active:scale-95"
                     title="Zoom In"
                 >
                     <Plus size={16} />
@@ -87,7 +87,7 @@ export default function Preview() {
                 <div className="w-px h-4 bg-black/10 mx-1" />
                 <button
                     onClick={() => setZoomLevel(1.0)}
-                    className="p-2 hover:bg-black/5 rounded-full transition-colors text-text/80 active:scale-95"
+                    className="flex justify-center items-center cursor-pointer p-2 aspect-square hover:bg-black/5 rounded-full transition-colors text-text/80 active:scale-95"
                     title="Reset Zoom"
                 >
                     <RotateCcw size={16} />

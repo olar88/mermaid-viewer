@@ -96,4 +96,5 @@ body {
   padding-right: 12px;
   color: var(--text-color);
   background-color: var(--accent-yellow);
+  cursor: pointer;
 }
